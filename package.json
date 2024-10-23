@@ -14,15 +14,22 @@
   "dependencies": {
     "@payloadcms/db-postgres": "beta",
     "@payloadcms/next": "beta",
-    "@payloadcms/richtext-lexical": "beta",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.115",
     "@payloadcms/storage-vercel-blob": "beta",
+    "@radix-ui/react-slot": "^1.1.0",
     "@vercel/blob": "^0.22.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
+    "lucide-react": "^0.453.0",
     "next": "15.0.0-canary.173",
     "payload": "beta",
     "react": "19.0.0-rc-3edc000d-20240926",
     "react-dom": "19.0.0-rc-3edc000d-20240926",
-    "sharp": "0.32.6"
+    "resend": "^4.0.0",
+    "sharp": "0.32.6",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
