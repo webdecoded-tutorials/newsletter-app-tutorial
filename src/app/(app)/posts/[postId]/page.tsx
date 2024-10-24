@@ -1,11 +1,7 @@
 import { getPayload } from "@/lib/payload";
 import RichText from "@/components/RichText";
 
-const page = async ({ params }: {
-  params: {
-    postId: string;
-  }
-}) => {
+const page = async ({ params }: any) => {
   const { postId } = await params;
   const payload = await getPayload();
   let post = await payload.find({

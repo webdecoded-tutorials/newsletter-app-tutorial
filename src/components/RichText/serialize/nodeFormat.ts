@@ -119,7 +119,7 @@ export const TEXT_MODE_TO_TYPE: Record<any, 0 | 1 | 2> = {
   token: IS_TOKEN,
 }
 
-export const TEXT_TYPE_TO_MODE: Record<number, TextModeType> = {
+export const TEXT_TYPE_TO_MODE: Record<number, any> = {
   [IS_NORMAL]: 'normal',
   [IS_SEGMENTED]: 'segmented',
   [IS_TOKEN]: 'token',

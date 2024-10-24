@@ -22,10 +22,10 @@ interface Props {
   nodes: SerializedLexicalNode[]
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function serializeLexical({ nodes }: Props) {
   return (
     <Fragment>
-      {nodes?.map((_node, index): JSX.Element | null => {
+      {nodes?.map((_node, index) => {
         if (_node.type === 'text') {
           const node = _node as SerializedTextNode
           let text = (
@@ -71,7 +71,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
         // NOTE: Hacky fix for
         // https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
         // which does not return checked: false (only true - i.e. there is no prop for false)
-        const serializedChildrenFn = (node: SerializedElementNode): JSX.Element | null => {
+        const serializedChildrenFn = (node: SerializedElementNode) => {
           if (node.children == null) {
             return null
           } else {
@@ -103,8 +103,8 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
           case 'heading': {
             const node = _node as SerializedHeadingNode
 
-            type Heading = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'h5'>
-            const Tag = node?.tag as Heading
+            // type Heading = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'h5'>
+            const Tag = node?.tag as any
             return <Tag key={index}>{serializedChildren}</Tag>
           }
           case 'label':
@@ -116,8 +116,8 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
           case 'list': {
             const node = _node as SerializedListNode
 
-            type List = Extract<keyof JSX.IntrinsicElements, 'ol' | 'ul'>
-            const Tag = node?.tag as List
+            // type List = Extract<keyof JSX.IntrinsicElements, 'ol' | 'ul'>
+            const Tag = node?.tag as any
             return (
               <Tag className={node?.listType} key={index}>
                 {serializedChildren}
