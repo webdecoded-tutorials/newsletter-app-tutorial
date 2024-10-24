@@ -5,6 +5,12 @@ import Link from 'next/link'
 import React from 'react'
 import SubscribeBtn from '@/components/newsletter/subscribeBtn'
 import TopPosts from '@/components/newsletter/topPosts'
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 
 export default async function Home() {
   return (
@@ -18,6 +24,12 @@ export default async function Home() {
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Pricing</Link>
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">About</Link>
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Contact</Link>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </nav>
       </header>
       <main className="flex-1">

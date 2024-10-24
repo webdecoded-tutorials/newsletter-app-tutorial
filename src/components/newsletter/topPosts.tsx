@@ -6,6 +6,7 @@ import {
   CardHeader,
 } from "@/components/ui/card"
 import { Post } from "../../payload-types";
+import Link from "next/link";
 
 const TopPosts = async () => {
   const posts = await (await getPayload()).find({
@@ -24,12 +25,14 @@ const TopPosts = async () => {
 
           return (
             <Card key={post.id}>
-              <CardContent>
-                <CardHeader>
-                  <CardTitle>{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent>{paragraphText}</CardContent>
-              </CardContent>
+              <Link href={`/posts/${post.id}`}>
+                <CardContent>
+                  <CardHeader>
+                    <CardTitle>{post.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>{paragraphText}</CardContent>
+                </CardContent>
+              </Link>
             </Card>
           )
         })}

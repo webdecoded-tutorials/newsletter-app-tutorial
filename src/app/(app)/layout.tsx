@@ -5,6 +5,14 @@ import React from 'react'
 
 import './globals.css'
 
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ClerkProvider>
+        <body className={inter.className}>{children}</body>
+      </ClerkProvider>
     </html>
   )
 }

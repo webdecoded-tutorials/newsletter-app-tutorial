@@ -19,9 +19,7 @@ const afterPostCreate: CollectionAfterOperationHook = async ({
     return result
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const audienceId = process.env.RESEND_AUDIENCE_ID
-  console.log('result', result)
+  const apiKey = process.env.CLOUDFLARE_API_KEY
 
   const newPost = result.docs ? result.docs[0] : result
   const title = newPost.title
@@ -39,30 +37,32 @@ const afterPostCreate: CollectionAfterOperationHook = async ({
     req,
   })
 
-  if (!apiKey || !audienceId) {
+  if (!apiKey) {
     return result
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
-  // get emails of users
-  const emails = await resend.contacts.list({
-    audienceId: audienceId,
-  })
-  if (!emails.data) {
-    return result
+  const url = `https://newsletter-tutorial-workers.webdecodedtutorials.workers.dev`
+  const headers = {
+    Authorization: `Basic ${apiKey}`,
   }
-  if (emails.data.object !== 'list') {
-    return result
-  }
-  const emailData = emails.data.data.map((contact) => ({
-    from: `Hello <hello@${process.env.RESEND_DOMAIN}>`,
-    to: [contact.email],
+
+  const reqBody = JSON.stringify({
     subject: title,
-    html,
-  }))
-  // Send an email to the user
-  const response = await resend.batch.send(emailData)
-  console.log('batch response', response)
+    emailContent: html,
+  })
+
+  fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: reqBody,
+  })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+
   return result
 }
 
