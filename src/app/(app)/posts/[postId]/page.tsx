@@ -1,4 +1,5 @@
 import { getPayload } from "@/lib/payload";
+import RichText from "@/components/RichText";
 
 const page = async ({ params }: {
   params: {
@@ -22,8 +23,9 @@ const page = async ({ params }: {
     </div>)
   }
   return (
-    <div>
-      <h1>{post.docs[0].title}</h1>
+    <div className="container mx-auto text-center pt-10">
+      <h1 className="text-5xl font-bold mb-5">{post.docs[0].title}</h1>
+      <RichText content={post.docs[0].postBody} />
     </div>
   )
 }

@@ -5,33 +5,11 @@ import Link from 'next/link'
 import React from 'react'
 import SubscribeBtn from '@/components/newsletter/subscribeBtn'
 import TopPosts from '@/components/newsletter/topPosts'
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+
 
 export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link href="#" className="flex items-center justify-center">
-          <span>Web Weekly</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Features</Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Pricing</Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">About</Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Contact</Link>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </nav>
-      </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 bg-[url('/pattern.png')] bg-contain bg-no-repeat bg-center">
           <div className="container px-4 md:px-6">
@@ -72,7 +50,7 @@ export default async function Home() {
           <TopPosts />
         </section>
       </main>
-      <footer>footer</footer>
+      <footer className="mt-4 p-3 flex items-center justify-center text-slate-700">Web Weekly</footer>
     </div>
   )
 }
